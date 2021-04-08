@@ -1,0 +1,13 @@
+language: python
+
+python:
+  - "3.8"
+
+script: pytest
+
+# test travis with this setup:
+# install:
+#   - pip install tox
+# script:
+#   - tox -v -e py38
+
