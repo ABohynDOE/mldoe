@@ -30,8 +30,7 @@ setup(
     ],
     # Package requirements for installation
     install_requires=[
-        "numpy>=1.19",
-        "oapackage>=2.6.8"
+        "numpy>=1.20",
     ],
     # Package requirements for testing
     extras_require={

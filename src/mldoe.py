@@ -6,7 +6,7 @@ File defining the design (meta)class and the two classes:
 """
 
 
-class design():
+class Design():
     def __init__(self, n_runs):
         self.n_runs = n_runs
         pass

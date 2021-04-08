@@ -14,7 +14,6 @@ python:
 
 before_script:
   - pip install --only-binary=numpy numpy>=1.19
-  - pip install oapackage
   - pip install -e .
 script:
   - pytest
