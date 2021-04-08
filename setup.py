@@ -33,7 +33,7 @@ setup(
     # Package requirements for testing
     extra_requires={
         "dev": [
-            "pytest>=6.2"
+            "pytest>=6.2.2"
         ]
     }
 )
