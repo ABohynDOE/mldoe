@@ -6,7 +6,7 @@ with open('README.md', 'r') as fh:
 setup(
     # General infos
     name='mldoe',
-    version='0.0.1',
+    version='0.0.2',
     author='Alexandre Bohyn',
     author_email='alexandre.bohyn@kuleuven.be',
     url='https://github.com/ABohynDOE/mldoe',
