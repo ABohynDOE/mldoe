@@ -2,12 +2,11 @@ from setuptools import setup
 import os
 
 
-def get_version():
-    with open(os.path.join(os.path.abspath(os.path.dirname(__file__)), "src", "_version.txt")) as f:
-        return f.read().strip()
+about = {}
+with open("src/_version.py") as f:
+    exec(f.read(), about)
 
-
-__version__ = get_version()
+os.environ["PBR_VERSION"] = about["__version__"]
 
 
 with open('README.md', 'r') as fh:
@@ -16,13 +15,16 @@ with open('README.md', 'r') as fh:
 setup(
     # General infos
     name='mldoe',
-    version=get_version(),
     author='Alexandre Bohyn',
     author_email='alexandre.bohyn@kuleuven.be',
     url='https://github.com/ABohynDOE/mldoe',
     description='Tools to generate and enumerate mixed-level designs',
     long_description=long_description,
     long_description_content_type="text/markdown",
+    # Version infos
+    setup_requires=["pbr"],
+    pbr=True,
+    version=about["__version__"],
     # Files infos
     py_modules=["design"],
     package_dir={'': 'src'},
