@@ -3,11 +3,12 @@
 ![PyPI - License](https://img.shields.io/pypi/l/mldoe)
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/mldoe)
 ![PyPI](https://img.shields.io/pypi/v/mldoe)
+[![Requirements Status](https://requires.io/github/ABohynDOE/mldoe/requirements.svg?branch=master)](https://requires.io/github/ABohynDOE/mldoe/requirements/?branch=master)
+[![Documentation Status](https://readthedocs.org/projects/mldoe/badge/?version=latest)](https://mldoe.readthedocs.io/en/latest/?badge=latest)
+
 <!-- Add badges for:
 -cover (coveralls.io)
--CI (travis.org)
--read the docs(readthedocs.io)
--dependencies (requires.io) -->
+-CI (travis.org) -->
 
 This package provides the tools to enumerate and characterize regular mixed-level designs (with four and two-level factors).
 
