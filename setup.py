@@ -1,12 +1,5 @@
 from setuptools import setup
-import os
-
-
-about = {}
-with open("src/_version.py") as f:
-    exec(f.read(), about)
-
-os.environ["PBR_VERSION"] = about["__version__"]
+from src._version import __version__
 
 
 with open('README.md', 'r') as fh:
@@ -22,9 +15,7 @@ setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     # Version infos
-    setup_requires=["pbr"],
-    pbr=True,
-    version=about["__version__"],
+    version=__version__,
     # Files infos
     py_modules=["design"],
     package_dir={'': 'src'},
