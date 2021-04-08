@@ -3,12 +3,17 @@ language: python
 python:
   - "3.8"
   
-before_install:
-  - pip install --only-binary=numpy numpy
+# before_install:
+#   - pip install --only-binary=numpy numpy
 
-install:
-  - pip install tox
+# install:
+#   - pip install tox
+
+# script:
+#   - tox -v -e py38
+
+before_script:
+  - pip install --only-binary=numpy numpy>=1.19
 
 script:
-  - tox -v -e py38
-
+  - pytest
