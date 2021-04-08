@@ -31,7 +31,7 @@ setup(
         "OApackage>=2.6"
     ],
     # Package requirements for testing
-    extra_requires={
+    extras_require={
         "dev": [
             "pytest>=6.2.2"
         ]
