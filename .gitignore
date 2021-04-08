@@ -150,8 +150,5 @@ Thumbs.db
 # profiling data
 .prof
 
-# bump2version
-.bumpversion.cfg
-
-
 # End of https://www.toptal.com/developers/gitignore/api/python
+.bumpversion.cfg
