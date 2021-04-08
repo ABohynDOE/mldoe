@@ -1,4 +1,14 @@
 from setuptools import setup
+import os
+
+
+def get_version():
+    with open(os.path.join(os.path.abspath(os.path.dirname(__file__)), "src", "_version.txt")) as f:
+        return f.read().strip()
+
+
+__version__ = get_version()
+
 
 with open('README.md', 'r') as fh:
     long_description = fh.read()
@@ -6,7 +16,7 @@ with open('README.md', 'r') as fh:
 setup(
     # General infos
     name='mldoe',
-    version='0.0.2',
+    version=get_version(),
     author='Alexandre Bohyn',
     author_email='alexandre.bohyn@kuleuven.be',
     url='https://github.com/ABohynDOE/mldoe',
