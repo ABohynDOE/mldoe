@@ -2,12 +2,13 @@ language: python
 
 python:
   - "3.8"
+  
+before_install:
+  - pip install --only-binary=numpy numpy
 
-# script: pytest
-
-# test travis with this setup:
 install:
   - pip install tox
+
 script:
   - tox -v -e py38
 
