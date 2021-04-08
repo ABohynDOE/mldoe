@@ -2,6 +2,7 @@
 
 ![PyPI - License](https://img.shields.io/pypi/l/mldoe)
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/mldoe)
+![PyPI](https://img.shields.io/pypi/v/mldoe)
 <!-- Add badges for:
 -cover (coveralls.io)
 -CI (travis.org)
