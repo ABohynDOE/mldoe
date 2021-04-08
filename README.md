@@ -41,3 +41,8 @@ To install mldoe, along with the tools you need to develop and run tests, run th
 ```bash
 pip install -e .[dev]
 ```
+
+## Contributors
+
+Want to contribute ? 
+Don't hesitate to create a pull request.
