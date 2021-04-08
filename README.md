@@ -8,7 +8,6 @@
 -read the docs(readthedocs.io)
 -dependencies (requires.io) -->
 
-
 This package provides the tools to enumerate and characterize regular mixed-level designs (with four and two-level factors).
 
 ## Installation
