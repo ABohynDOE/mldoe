@@ -14,7 +14,7 @@ python:
 
 before_script:
   - pip install --only-binary=numpy numpy>=1.19
-  - cd /tmp/ && wget https://github.com/swig/swig/archive/rel-3.0.12.tar.gz && tar zxf rel-3.0.12.tar.gz && cd swig-rel-3.0.12 && ./autogen.sh && ./configure --prefix "${HOME}"/swig/ 1>/dev/null && make >/dev/null && make install >/dev/null
+  - cd /tmp/ && wget http://downloads.sourceforge.net/swig/swig-3.0.8.tar.gz && tar zxf swig-3.0.8.tar.gz && cd swig-3.0.8 && ./autogen.sh && ./configure --prefix "${HOME}"/swig/ 1>/dev/null && make >/dev/null && make install >/dev/null
   - pip install oapackage
   - pip install -e .
 script:
