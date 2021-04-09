@@ -1,4 +1,4 @@
-# MLDOE
+# mldoe
 
 ![PyPI - License](https://img.shields.io/pypi/l/mldoe)
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/mldoe)
@@ -16,17 +16,17 @@ This package provides the tools to enumerate and characterize regular mixed-leve
 
 Run the following to install:
 
-```python
+```bash
 pip install mldoe
 ```
 
 ## Usage
 
 ```python
-from mldoe import design
+import mldoe
 
 # Generate a two-level design by columns
-D = TLdesign(16,[1,2,4,8,6])
+D = mldoe.TLdesign(16,[1,2,4,8,6])
 
 # Print the design matrix
 print(D.array)
