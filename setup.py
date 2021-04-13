@@ -29,9 +29,11 @@ setup(
         "Programming Language :: Python :: 3.8"
     ],
     # Package requirements for installation
+    # TODO: add find_package
     install_requires=[
         "numpy>=1.20",
-        'oapackage>=2.6'
+        'oapackage>=2.6',
+        "tqdm>=4.58",
     ],
     # Package requirements for testing
     extras_require={
