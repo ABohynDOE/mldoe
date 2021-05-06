@@ -119,7 +119,10 @@ ENV/
 env.bak/
 venv.bak/
 pythonenv*
-venv-linux/
+
+# Pycharm project
+.idea/
+.idea
 
 # Spyder project settings
 .spyderproject
@@ -151,9 +154,6 @@ Thumbs.db
 # profiling data
 .prof
 
-# End of https://www.toptal.com/developers/gitignore/api/python
-.bumpversion.cfg
 
-# Pycharm
-.idea/
-.idea
+# End of https://www.toptal.com/developers/gitignore/api/python
+.vscode/

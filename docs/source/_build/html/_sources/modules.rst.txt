@@ -1,0 +1,7 @@
+mldoe module
+===============
+
+.. automodule:: src.mldoe
+    :members:
+    :undoc-members:
+    :show-inheritance:

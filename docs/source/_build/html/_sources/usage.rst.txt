@@ -1,0 +1,21 @@
+=====
+Usage
+=====
+
+Here is a code example:
+
+..
+    TODO: add explanation of the columns number of the pseudo-factor triplets
+
+.. code-block:: python
+
+    import mldoe
+
+    # Generate a two-level design by specifying columns number
+    D = mldoe.TLdesign(16,[1,2,4,8,6])
+
+    # Print the design matrix
+    print(D.array)
+
+    # Compute its word-length pattern
+    print(D.wlp())
