@@ -1,0 +1,2 @@
+numpy==1.20.2
+OApackage==2.6.8
