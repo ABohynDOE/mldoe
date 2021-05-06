@@ -1,6 +1,6 @@
 import numpy as np
 import oapackage as oa
-import src.mldoe.design as des
+import mldoe.design as des
 
 
 # HELPER FUNCTIONS ------------------------------------------------------
@@ -15,7 +15,8 @@ def nauty_reduction(candi_set: list, resolution: int = 3) -> list:
     :return: list of the non-isomorphic designs from the input set
     """
     # Turn all arrays into array_link form
-    al = [oa.array_link(d.array) for d in candi_set if d.resolution >= resolution]
+    al = [oa.array_link(d.array)
+          for d in candi_set if d.resolution >= resolution]
     # Define the isomorphism classes
     index, _ = selectIsomorphismClasses(al, verbose=0)
     # Select one rep. per class
@@ -62,7 +63,8 @@ def selectIsomorphismClasses(sols: list, verbose: int = 0) -> tuple:
 def main():
     # Create a 64-run mixed-level design with only basic factors and a single added factor, with a single four-level
     # factor constructed from the three pseudo factors 1,2,3 (constructed using the grouping scheme of Wu 1989).
-    root_set = [des.MLD(128, [[1, 2, 3]], [4, 8, 16, i]) for i in range(1, 32) if i not in [1, 2, 3, 4, 8, 16]]
+    root_set = [des.MLD(128, [[1, 2, 3]], [4, 8, 16, i])
+                for i in range(1, 32) if i not in [1, 2, 3, 4, 8, 16]]
     parent_set = nauty_reduction(root_set)
 
     # Initialize candidate list
@@ -75,7 +77,8 @@ def main():
         # For each generator, compute the DOP and check that the parent design has MA over all DOP
         parent_wlp = parent.wlp
         for gen in gen_list:
-            candidate = des.MLD(parent.n_runs, parent.pf_lst, parent.cols + [gen])
+            candidate = des.MLD(
+                parent.n_runs, parent.pf_lst, parent.cols + [gen])
             MA = True
             for dop in candidate.dop():
                 dop_wlp = dop.wlp
@@ -102,4 +105,3 @@ if __name__ == "__main__":
     with cProfile.Profile() as pr:
         main()
     pr.print_stats(sort='cumulative')
-

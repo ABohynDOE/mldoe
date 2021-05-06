@@ -1,6 +1,6 @@
 # Packages
 from math import log2
-from src.mldoe.matrix import bmat
+from mldoe.matrix import bmat
 from itertools import chain
 import oapackage as oa
 from typing import List
@@ -47,6 +47,8 @@ class Design:
         """Number of basic (independent) factors"""
         self.p = self.k - self.n_runs
         """Number of added factors (created from generators)"""
+        self.bf = [2**i for i in range(int(log2(self.n_runs)))]
+        """List of the basic factors in the design"""
 
 
 class TLD(Design):
@@ -115,11 +117,14 @@ class MLD(Design):
             if any([(not isinstance(i, int)) for i in pf_set]):
                 raise TypeError('All pseudo-factors must be integers')
             elif pf_set[0] ^ pf_set[1] != pf_set[2]:
-                raise ValueError('All pseudo-factor triplets must be of the form a, b, ab')
+                raise ValueError(
+                    'All pseudo-factor triplets must be of the form a, b, ab')
             elif any([(i in cols) for i in pf_set]):
-                raise ValueError('Pseudo-factors cannot be used as two-level columns')
+                raise ValueError(
+                    'Pseudo-factors cannot be used as two-level columns')
             elif any([(i <= 0 or i >= n_runs) for i in pf_set]):
-                raise ValueError('Pseudo-factors must be positive integers between 0 and N (non-included)')
+                raise ValueError(
+                    'Pseudo-factors must be positive integers between 0 and N (non-included)')
             else:
                 self.pf_lst = pf_lst
 
@@ -128,6 +133,8 @@ class MLD(Design):
         """Number of four-level factors"""
         self.pf = list(chain(*self.pf_lst))
         """All two-level factors used as pseudo-factors for the four-level factors"""
+        self.af = [i for i in self.cols if i not in self.pf and i not in self.bf]
+        """List of all the added factors (factors that are not basic factors nor pseudo-factors)"""
 
     @property
     def array(self):
@@ -142,7 +149,7 @@ class MLD(Design):
         four_lvl_part = np.zeros((self.n_runs, self.m))
         for i, pf_set in enumerate(self.pf_lst):
             four_lvl_part[:, i] = b_mat[:, pf_set[0] - 1] * \
-                                  2 + b_mat[:, pf_set[1] - 1]
+                2 + b_mat[:, pf_set[1] - 1]
         return np.concatenate((four_lvl_part, two_lvl_part), axis=1).astype(int)
 
     @property
