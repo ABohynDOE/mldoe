@@ -1,6 +1,7 @@
 # Packages
 from math import log2
-from mldoe.matrix import bmat
+from mldoe.matrix import bmat, gmat
+from mldoe.wlp import wlp
 from itertools import chain
 import oapackage as oa
 from typing import List
@@ -45,7 +46,7 @@ class Design:
         """Total number of two-level factors"""
         self.n = int(log2(self.n_runs))
         """Number of basic (independent) factors"""
-        self.p = self.k - self.n_runs
+        self.p = self.k - self.n
         """Number of added factors (created from generators)"""
         self.bf = [2**i for i in range(int(log2(self.n_runs)))]
         """List of the basic factors in the design"""
@@ -159,7 +160,8 @@ class MLD(Design):
         of words of length :math:`i` among the :math:`2^{p}-1` words of the design.
         """
         # TODO: add a type-specific word-length pattern definition
-        return oa.array_link(self.array.astype(int)).GWLP()
+        #return oa.array_link(self.array.astype(int)).GWLP()
+        return wlp(self.array,self.m).tolist()
 
     @property
     def resolution(self):
@@ -168,7 +170,7 @@ class MLD(Design):
         :math:`W_i > 0`.
         """
         # TODO: implement type-specific resolution for the type-specific wlp
-        return next((i for i, x in enumerate(self.wlp[1:]) if x), self.k) + 1
+        return next((i for i, x in enumerate(self.wlp) if x), self.k) + 1
 
     def generators(self, resolution: int = 3) -> List[int]:
         """
@@ -257,3 +259,28 @@ def gen_char(x: int) -> str:
     """
     pow_lst = pow2(x)
     return ''.join([chr(97 + int(log2(i))) for i in pow_lst])
+
+def mat_wlp(des, s=3):
+    # Word interaction matrix
+    k = len(des.af)
+    G = gmat(des.n)
+    Sk = np.concatenate((G[:, [i-1 for i in des.af]], np.eye(k, dtype=int)), axis=0)
+    Gk = np.dot(Sk, gmat(k)) % 2
+
+    # Pseudo-factor matrix
+    n4 = des.m
+    P = np.eye(des.n+k, dtype=np.float32)[n4:, :]
+    for ind, val in enumerate(des.pf_lst):
+        P[ind, 0:des.n] = G[:, [i-1 for i in val]].any(1)*(2/3)
+
+    # Adapted word interaction matrix
+    W = np.rint(np.dot(P, Gk))
+    t = W[0:n4, :].sum(0)
+    wlpmat = np.zeros((n4+1, des.k+n4))
+    for ii in range(n4+1):
+        wvt = W[:, t == ii].sum(0)
+        if not wvt.size > 0:
+            continue
+        for jj in range(s-1, n4+des.k):
+            wlpmat[ii, jj] = np.count_nonzero(wvt == jj+1)
+    return wlpmat[:, s-1:].astype(int)
