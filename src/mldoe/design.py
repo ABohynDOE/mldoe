@@ -284,3 +284,33 @@ def mat_wlp(des, s=3):
         for jj in range(s-1, n4+des.k):
             wlpmat[ii, jj] = np.count_nonzero(wvt == jj+1)
     return wlpmat[:, s-1:].astype(int)
+
+# Function to get the first iteration of added factors
+def first_added_fact(des: MLD, res: int):
+    """
+    Select the generators that correspond to the non-isomorphic MLD's with a single 
+    added factor.
+    
+    :param des: Root design (MLD with basic factors only)
+    :type des: mldoe.design.MLD
+    :param res: Minimal resolution of the designs
+    :type res: int
+    :return: list of the generators for the added factors
+    :rtype: List[int]
+
+    """
+    fac_lst = []
+    type_len_cache = []
+    for gen in des.generators():
+        len_gen = gen_len(gen, des.pf_lst)
+        if len_gen+1 < res:
+            continue
+        if any([gen&i for i in des.pf]):
+            gen_type = 1
+        else:
+            gen_type = 0
+        type_len = 2*len_gen + gen_type
+        if type_len not in type_len_cache:
+            fac_lst.append(gen)
+            type_len_cache.append(type_len)
+    return fac_lst

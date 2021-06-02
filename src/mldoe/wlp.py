@@ -1,4 +1,5 @@
 import numpy as np
+from numba import njit
 from math import factorial as fac
 
 def binom(n: int,k: int):
@@ -12,6 +13,7 @@ def binom(n: int,k: int):
     except ValueError:
         return 0
 
+@njit
 def ham_dist(mat):
     """
     Compute the hamming distance between all pairs of rows in a matrix.
